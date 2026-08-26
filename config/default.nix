@@ -1,7 +1,9 @@
-{...}: {
+{inputs, ...}: {
   imports = [
-  ./options
-  ./keymaps
-  ./plugins
+    ./options
+    ./keymaps
+    ./plugins
   ];
+
+  _module.args = {inherit inputs;};
 }

@@ -27,8 +27,9 @@
             nixvim.homeModules.nixvim
           ];
           programs.nixvim = {
-            imports = [./config];
-            extraSpecialArgs = {inherit inputs;};
+            imports = [
+              (import ./config {inherit inputs;})
+            ];
           };
         };
 
@@ -37,8 +38,9 @@
             nixvim.nixosModules.nixvim
           ];
           programs.nixvim = {
-            imports = [./config];
-            extraSpecialArgs = {inherit inputs;};
+            imports = [
+              (import ./config {inherit inputs;})
+            ];
           };
         };
       };
