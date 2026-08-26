@@ -1,0 +1,20 @@
+{
+  "react typescript functional component": {
+    "prefix": "rfc",
+    "body": [
+      "import { FC } from 'react';",
+      "",
+      "export type ${TM_FILENAME_BASE}Props = {",
+      "  ${1}",
+      "};",
+      "",
+      "export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = ({${2}}) => {",
+      "  return (",
+      "    ${3}",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "React Typescript functional component"
+  }
+}

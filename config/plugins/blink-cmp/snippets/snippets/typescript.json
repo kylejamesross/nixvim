@@ -1,0 +1,25 @@
+{
+  "interface for file": {
+    "prefix": "interface",
+    "body": [
+      "export interface ${TM_FILENAME_BASE} {",
+      "  $1",
+      "}"
+    ],
+    "description": "Create Interface for file"
+  },
+  "zod schema type": {
+    "prefix": "stype",
+    "body": [
+      "import z from 'zod';",
+      "",
+      "export type ${TM_FILENAME_BASE} = z.infer<typeof $1>;"
+    ]
+  },
+  "export type": {
+    "prefix": "et",
+    "body": [
+      "export type ${TM_FILENAME_BASE} = $1;"
+    ]
+  }
+}

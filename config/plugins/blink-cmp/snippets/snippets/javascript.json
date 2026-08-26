@@ -1,0 +1,92 @@
+{
+  "bufferName": {
+    "prefix": "bn",
+    "body": "${TM_FILENAME_BASE}",
+    "description": "Displays name of currently selected buffer"
+  },
+  "consoleLogObject": {
+    "prefix": "clo",
+    "body": "console.log('${1:object} :>> ', ${1:object});",
+    "description": "Displays an object in the console with its name"
+  },
+  "consoleLog": {
+    "prefix": "clg",
+    "body": "console.log(${1:object});",
+    "description": "Displays a message in the console"
+  },
+  "consoleTrace": {
+    "prefix": "ctr",
+    "body": "console.trace(${1:object});",
+    "description": "Prints a stack trace from the point where the method was called"
+  },
+  "export const": {
+    "prefix": "ec",
+    "body": "export const ${TM_FILENAME_BASE} =",
+    "description": "Create export const based on file name"
+  },
+  "export default const": {
+    "prefix": "edc",
+    "body": "export default const ${TM_FILENAME_BASE} =",
+    "description": "Create export default const based on file name"
+  },
+  "styled component": {
+    "prefix": "sc",
+    "body": "export const ${1:ComponentName} = styled.${2:Component}`\n\t\n`;"
+  },
+  "exportClass": {
+    "prefix": "ecl",
+    "body": "export class ${TM_FILENAME_BASE} {\n\t$0\n};\n",
+    "description": "Export default class in ES6 syntax"
+  },
+  "constructor": {
+    "prefix": "con",
+    "body": "constructor(${1:params}) {\n\t${0}\n}",
+    "description": "Add default constructor in a class in ES6 syntax"
+  },
+  "propertyGet": {
+    "prefix": "pge",
+    "body": "get ${1:propertyName}() {\n\treturn this.${0};\n}",
+    "description": "Creates a getter property inside a class in ES6 syntax"
+  },
+  "propertyset": {
+    "prefix": "pse",
+    "body": "set ${1:propertyName}(${2:value}) {\n\t${0};\n}",
+    "description": "Creates a setter property inside a class in ES6 syntax"
+  },
+  "exportNamedFunction": {
+    "prefix": "ef",
+    "body": [
+      "export function ${TM_FILENAME_BASE}(${1}) {",
+      "  ${2}",
+      "};",
+      ""
+    ],
+    "description": "Export named function"
+  },
+  "exportAnonymousFunction": {
+    "prefix": "eaf",
+    "body": [
+      "export const ${TM_FILENAME_BASE} = (${1}) => {",
+      "  ${2}",
+      "};",
+      ""
+    ],
+    "description": "Export Anonymous function"
+  },
+  "describe": {
+    "prefix": "desc",
+    "body": [
+      "describe('${TM_FILENAME_BASE/(.*?)\\..*/$1/}', () => {",
+      "\tit('$1', () => {",
+      "\t\t$2",
+      "\t});",
+      "});"
+    ],
+    "description": "creates a test block"
+  },
+  "it": {
+    "body": "it('${1:should }', () => {\n\t$0\n});",
+    "description": "creates an it block",
+    "prefix": "it"
+  }
+}

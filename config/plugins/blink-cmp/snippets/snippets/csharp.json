@@ -1,0 +1,36 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${TM_FILENAME_BASE}",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Class"
+  },
+  "constructor": {
+    "prefix": "ctor",
+    "body": [
+      "${1:public} ${TM_FILENAME_BASE}(${2:Parameters})",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "constructor"
+  },
+  "Console.WriteLine": {
+    "prefix": "cw",
+    "body": [
+      "System.Console.WriteLine($0);"
+    ],
+    "description": "Console.WriteLine"
+  },
+  "prop": {
+    "prefix": "prop",
+    "body": [
+      "public ${1:int} ${2:PropertyName} { get; set; }$0"
+    ],
+    "description": "An automatically implemented property."
+  }
+}

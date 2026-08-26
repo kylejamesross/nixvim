@@ -1,0 +1,48 @@
+{
+  "react functional component": {
+    "prefix": "rfc",
+    "body": [
+      "export const ${TM_FILENAME_BASE} = (${1}) => {",
+      "  return (",
+      "    ${2}",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "React functional component"
+  },
+  "reactHook": {
+    "prefix": "rh",
+    "body": [
+      "export const ${TM_FILENAME_BASE} = (${1}) => {",
+      "  ${2}",
+      "};",
+      ""
+    ],
+    "description": "React hook"
+  },
+  "useCallback": {
+    "prefix": "useCallback",
+    "body": [
+      "const ${1:callbackName} = useCallback(",
+      "  () => {",
+      "    ${2:innerFunction}",
+      "  },",
+      "  [${2:dependencies}]",
+      ");",
+      ""
+    ]
+  },
+  "useMemo": {
+    "prefix": "useMemo",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => ${2:innerFunction}, [${3:dependencies}]);"
+    ]
+  },
+  "useState": {
+    "prefix": "useState",
+    "body": [
+      "const [${1:first}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:second})"
+    ]
+  }
+}
