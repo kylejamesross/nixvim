@@ -21,6 +21,38 @@
         "x86_64-linux"
       ];
 
+      flake = {
+        homeModules.default = {
+          inputs,
+          ...
+        }: {
+          imports = [
+            inputs.nixvim.homeModules.nixvim
+          ];
+          programs.nixvim = {
+            enable = true;
+            defaultEditor = true;
+            imports = [./config];
+            extraSpecialArgs = {inherit inputs;};
+          };
+        };
+
+        nixosModules.default = {
+          inputs,
+          ...
+        }: {
+          imports = [
+            inputs.nixvim.nixosModules.nixvim
+          ];
+          programs.nixvim = {
+            enable = true;
+            defaultEditor = true;
+            imports = [./config];
+            extraSpecialArgs = {inherit inputs;};
+          };
+        };
+      };
+
       perSystem = {system, ...}: let
         configuration = nixvim.lib.evalNixvim {
           inherit system;

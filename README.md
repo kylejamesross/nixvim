@@ -70,15 +70,31 @@ Available outputs:
 
 ## Use in NixOS or Home Manager
 
-You can reuse this flake as a package in a larger config:
+Import the flake module in your main config:
 
 ```nix
-environment.systemPackages = [
-  inputs.nixvim-config.packages.${pkgs.system}.default
+# Home Manager
+imports = [
+  inputs.nixvim-config.homeModules.default
+];
+
+# NixOS
+imports = [
+  inputs.nixvim-config.nixosModules.default
 ];
 ```
 
 Replace `inputs.nixvim-config` with however you reference this flake in your `flake.nix`.
+
+You only need one or the other — use Home Manager for user-level config, or the NixOS module for system-wide setup without Home Manager. Do not enable both for the same user.
+
+Alternatively, install the package directly without the module wrapper:
+
+```nix
+home.packages = [
+  inputs.nixvim-config.packages.${pkgs.system}.default
+];
+```
 
 ## Project layout
 
