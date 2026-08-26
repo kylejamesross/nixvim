@@ -33,20 +33,6 @@
         				["*"] = require("vim.ui.clipboard.osc52").paste("*"),
         			},
         		}
-        	elseif is_wsl then
-        		-- Local WSL: talk to the Windows clipboard directly
-        		return {
-        			name = "win32yank",
-        			copy = {
-        				["+"] = { "win32yank.exe", "-i", "--crlf" },
-        				["*"] = { "win32yank.exe", "-i", "--crlf" },
-        			},
-        			paste = {
-        				["+"] = { "win32yank.exe", "-o", "--lf" },
-        				["*"] = { "win32yank.exe", "-o", "--lf" },
-        			},
-        			cache_enabled = 0,
-        		}
         	elseif vim.fn.executable("wl-copy") == 1 then
         		-- Native Wayland desktop
         		return {
