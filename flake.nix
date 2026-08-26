@@ -22,31 +22,21 @@
       ];
 
       flake = {
-        homeModules.default = {
-          inputs,
-          ...
-        }: {
+        homeModules.default = {...}: {
           imports = [
-            inputs.nixvim.homeModules.nixvim
+            nixvim.homeModules.nixvim
           ];
           programs.nixvim = {
-            enable = true;
-            defaultEditor = true;
             imports = [./config];
             extraSpecialArgs = {inherit inputs;};
           };
         };
 
-        nixosModules.default = {
-          inputs,
-          ...
-        }: {
+        nixosModules.default = {...}: {
           imports = [
-            inputs.nixvim.nixosModules.nixvim
+            nixvim.nixosModules.nixvim
           ];
           programs.nixvim = {
-            enable = true;
-            defaultEditor = true;
             imports = [./config];
             extraSpecialArgs = {inherit inputs;};
           };
