@@ -62,11 +62,23 @@ nix flake show
 
 Available outputs:
 
-| Output | Description |
-| --- | --- |
+| Output                          | Description                   |
+| ------------------------------- | ----------------------------- |
 | `packages.x86_64-linux.default` | The configured Neovim package |
-| `apps.x86_64-linux.default` | Runnable app (`nix run .#`) |
-| `checks.x86_64-linux.default` | Config validation derivation |
+| `apps.x86_64-linux.default`     | Runnable app (`nix run .#`)   |
+| `checks.x86_64-linux.default`   | Config validation derivation  |
+
+## Add to Nix package manager
+
+```bash
+nix --extra-experimental-features 'nix-command flakes' profile add github:kylejamesross/nixvim
+```
+
+## Upgrade in nix package manager
+
+```bash
+nix --extra-experimental-features 'nix-command flakes' profile upgrade github:kylejamesross/nixvim
+```
 
 ## Use in NixOS or Home Manager
 
