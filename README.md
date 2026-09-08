@@ -8,6 +8,13 @@ A standalone [nixvim](https://github.com/nix-community/nixvim) flake for Neovim.
 
 If flakes are not enabled globally, you can pass `--extra-experimental-features 'nix-command flakes'` to the commands below.
 
+> [!TIP]
+> The [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer) is a good way to install Nix — it enables flakes by default and supports easy uninstallation:
+>
+> ```bash
+> curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+> ```
+
 ## Quick start
 
 Run Neovim without installing anything:
@@ -71,13 +78,13 @@ Available outputs:
 ## Add to Nix package manager
 
 ```bash
-nix --extra-experimental-features 'nix-command flakes' profile add github:kylejamesross/nixvim
+nix profile add github:kylejamesross/nixvim
 ```
 
 ## Upgrade in nix package manager
 
 ```bash
-nix --extra-experimental-features 'nix-command flakes' profile upgrade github:kylejamesross/nixvim
+nix profile upgrade nixvim
 ```
 
 ## Use in NixOS or Home Manager
