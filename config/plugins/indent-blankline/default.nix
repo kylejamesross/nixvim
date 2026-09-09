@@ -4,7 +4,6 @@
     settings = {
       indent = {
         char = "┊";
-        highlight = "IblIndent";
       };
     };
   };
