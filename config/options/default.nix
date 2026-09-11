@@ -86,7 +86,7 @@
   extraConfigLua =
     #lua
     ''
-      vim.env.PATH = "${pkgs.nodejs_22}/bin:" .. vim.env.PATH
+      vim.env.PATH = "${pkgs.nodejs_latest}/bin:" .. vim.env.PATH
       require("vim._core.ui2").enable({
       	enable = true,
       	msg = {
