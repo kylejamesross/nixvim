@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       indent = {
-        char = "┊";
+        char = "";
       };
     };
   };
