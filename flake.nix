@@ -1,9 +1,18 @@
 {
   description = "Nixvim configuration";
 
+  nixConfig = {
+    extra-substituters = ["https://nix-community.cachix.org"];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     telescope-git-file-history-nvim = {
       url = "github:isak102/telescope-git-file-history.nvim";
@@ -15,43 +24,40 @@
     nixvim,
     flake-parts,
     ...
-  } @ inputs:
+  } @ inputs: let
+    configModule = {
+      imports = [
+        (import ./config {inherit inputs;})
+      ];
+    };
+
+    mkSystemModule = baseModule: _: {
+      imports = [baseModule];
+      programs.nixvim.imports = [configModule];
+    };
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
       ];
 
       flake = {
-        homeModules.default = {...}: {
-          imports = [
-            nixvim.homeModules.nixvim
-          ];
-          programs.nixvim = {
-            imports = [
-              (import ./config {inherit inputs;})
-            ];
-          };
-        };
-
-        nixosModules.default = {...}: {
-          imports = [
-            nixvim.nixosModules.nixvim
-          ];
-          programs.nixvim = {
-            imports = [
-              (import ./config {inherit inputs;})
-            ];
-          };
-        };
+        homeModules.default = mkSystemModule nixvim.homeModules.nixvim;
+        nixosModules.default = mkSystemModule nixvim.nixosModules.nixvim;
       };
 
-      perSystem = {system, ...}: let
+      perSystem = {
+        system,
+        pkgs,
+        ...
+      }: let
         configuration = nixvim.lib.evalNixvim {
           inherit system;
-          modules = [./config];
-          extraSpecialArgs = {inherit inputs;};
+          modules = [configModule];
         };
       in {
+        formatter = pkgs.alejandra;
+
         checks.default = configuration.config.build.test;
         packages.default = configuration.config.build.package;
         apps.default = {

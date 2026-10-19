@@ -50,13 +50,6 @@
             desc = "[G]rep";
           };
         };
-        "<c-t>" = {
-          mode = "n";
-          action = "live_grep";
-          options = {
-            desc = "Telescope: Grep";
-          };
-        };
         "<leader>sd" = {
           mode = "n";
           action = "diagnostics";
@@ -112,9 +105,10 @@
         name = "telescope-git-file-history.nvim";
         src = inputs.telescope-git-file-history-nvim;
       })
-      pkgs.ripgrep
       pkgs.vimPlugins.plenary-nvim
   ];
+
+  extraPackages = [pkgs.ripgrep];
 
   keymaps = [
       {
@@ -173,7 +167,7 @@
           end
         '';
         options = {
-          desc = "[F]iles";
+          desc = "[N]eovim Config";
         };
       }
   ];

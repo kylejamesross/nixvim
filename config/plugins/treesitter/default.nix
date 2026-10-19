@@ -1,23 +1,23 @@
-{pkgs, ...}: {
+{config, ...}: {
   plugins = {
-  treesitter = {
+    treesitter = {
       enable = true;
-      settings = {
-        highlight = {
-          enable = true;
-          additional_vim_regex_highlighting = true;
-        };
-      };
+      highlight.enable = true;
       indent = {
         enable = true;
         disable = ["yaml"];
       };
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
         astro
         bash
+        c
         c_sharp
+        cpp
         css
+        diff
+        dockerfile
         fish
+        gitcommit
         html
         javascript
         json
@@ -25,6 +25,7 @@
         markdown
         markdown_inline
         nix
+        query
         regex
         rust
         scss
@@ -37,8 +38,8 @@
         vue
         yaml
       ];
-  };
-  treesitter-textobjects = {
+    };
+    treesitter-textobjects = {
       enable = true;
       settings = {
         select = {
@@ -53,18 +54,17 @@
             "ab" = "@block.outer";
             "ip" = "@parameter.inner";
             "ap" = "@parameter.outer";
-            "io" = "@object.outer";
-            "oo" = "@object.inner";
+            "ao" = "@assignment.outer";
+            "io" = "@assignment.inner";
           };
         };
       };
-  };
-  ts-context-commentstring.enable = true;
-  ts-autotag.enable = true;
+    };
+    ts-context-commentstring.enable = true;
   };
   keymaps = [
-  # Visual mode: keep growing/shrinking while already selecting
-  {
+    # Visual mode: keep growing/shrinking while already selecting
+    {
       mode = "x";
       key = "<C-A-j>";
       action = "an";
@@ -72,8 +72,8 @@
         remap = true;
         desc = "Grow node selection (an)";
       };
-  }
-  {
+    }
+    {
       mode = "x";
       key = "<C-A-k>";
       action = "in";
@@ -81,9 +81,9 @@
         remap = true;
         desc = "Shrink node selection (in)";
       };
-  }
-  # Normal mode: enter visual, then trigger the same node select
-  {
+    }
+    # Normal mode: enter visual, then trigger the same node select
+    {
       mode = "n";
       key = "<C-A-j>";
       action = "van";
@@ -91,8 +91,8 @@
         remap = true;
         desc = "Enter visual + grow node selection";
       };
-  }
-  {
+    }
+    {
       mode = "n";
       key = "<C-A-k>";
       action = "vin";
@@ -100,6 +100,6 @@
         remap = true;
         desc = "Enter visual + shrink node selection";
       };
-  }
+    }
   ];
 }

@@ -64,22 +64,18 @@ in {
         typescript = [
           configChrome
           configVitest
-          configChrome
         ];
         javascript = [
           configChrome
           configVitest
-          configChrome
         ];
         typescriptreact = [
           configChrome
           configVitest
-          configChrome
         ];
         javascriptreact = [
           configChrome
           configVitest
-          configChrome
         ];
         cs = [
           {
@@ -133,9 +129,12 @@ in {
     };
   };
 
-  # extraPackages = with pkgs; [
-  #   vimPlugins.nvim-nio
-  # ];
+  # DAP adapters referenced by name must be on PATH. `brave` is intentionally
+  # left as a PATH lookup: it is the user's system browser, not a dev tool.
+  extraPackages = with pkgs; [
+    vscode-js-debug
+    netcoredbg
+  ];
   extraConfigLua = ''
     local dap, dapui = require("dap"), require("dapui")
     dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -194,7 +193,7 @@ in {
       mode = ["n"];
     }
     {
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -208,7 +207,7 @@ in {
       mode = ["n"];
     }
     {
-      action =
+      action.__raw =
         # lua
         ''
           function()

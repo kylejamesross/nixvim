@@ -39,15 +39,23 @@
   };
 
   clipboard = {
-    providers.wl-copy.enable = true;
+    providers = {
+      wl-copy.enable = true;
+      xclip.enable = true;
+    };
     register = "unnamedplus";
   };
+  extraPackages = with pkgs; [
+    nodejs_22
+    dotnet-sdk
+  ];
   opts = {
     number = true;
     relativenumber = true;
     mouse = "a";
     shiftwidth = 2;
     tabstop = 2;
+    expandtab = true;
     hlsearch = true;
     ignorecase = true;
     smartcase = true;
@@ -59,12 +67,19 @@
     smartindent = true;
     updatetime = 250;
     timeoutlen = 500;
+    inccommand = "split";
+    confirm = true;
+    laststatus = 3;
     splitright = true;
     splitbelow = true;
     cursorline = true;
     termguicolors = true;
     list = true;
-    listchars.__raw = "{ tab = '» ', trail = '·', nbsp = '␣' }";
+    listchars = {
+      tab = "» ";
+      trail = "·";
+      nbsp = "␣";
+    };
   };
   autoGroups = {
     kickstart-highlight-yank = {
@@ -83,7 +98,4 @@
       '';
     }
   ];
-  extraConfigLua = ''
-    vim.env.PATH = "${pkgs.nodejs_22}/bin:" .. vim.env.PATH
-  '';
 }

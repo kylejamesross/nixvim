@@ -21,7 +21,6 @@
     rainbow-delimiters.enable = true;
     ts-autotag.enable = true;
     markdown-preview.enable = true;
-    web-devicons.enable = true;
     otter.enable = true;
     nvim-autopairs.enable = true;
   };

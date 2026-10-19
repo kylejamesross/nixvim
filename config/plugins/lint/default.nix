@@ -5,8 +5,9 @@
 
       lintersByFt = {
         lua = ["luacheck"];
-        markdownlint = ["markdownlint"];
+        markdown = ["markdownlint"];
         sh = ["shellcheck"];
+        bash = ["shellcheck"];
         yaml = ["yamllint"];
       };
 
